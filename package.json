@@ -1,7 +1,7 @@
 {
   "name": "freeflow",
   "version": "0.1.0",
-  "description": "Similar to async.auto, but offers partial calculation feature.",
+  "description": "Similar to async.auto, but offers partial calculation and different interface.",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
