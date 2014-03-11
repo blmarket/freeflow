@@ -61,4 +61,25 @@ test = ->
     return
   )
 
+  freeflow({
+    funcA: (cb) ->
+      setTimeout(
+        ->
+          cb null, 123
+          return
+        500
+      )
+      return
+    funcB: (funcA, cb) -> cb null, funcA + 111; return
+    funcC: [ 'funcA', 'funcB', (a_result, b_result, cb) ->
+      cb null, a_result + b_result
+      return
+    ]
+  }, 'funcC', ->
+    console.log arguments
+    return
+  )
+
+  return
+
 test()

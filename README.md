@@ -29,6 +29,17 @@ that feature. that's why I coded this library.
       ...
     });
 
+If you don't like to use auto-inference feature, you can specify dependencies.
+
+    var freeflow = require('freeflow');
+    freeflow({
+      funcA: function(callback) { ... },
+      funcB: function(callback) { ... },
+      funcC: [ 'funcA', 'funcB', function(AR, BR, callback) { ... } ]
+    }, 'funcC', function(err, result) {
+      ...
+    });
+
 ### TODO
 
 * Alternative way without dependency inference.
