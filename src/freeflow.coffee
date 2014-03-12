@@ -12,9 +12,13 @@ freeflow = (methods, target_name, callback) ->
       return
 
   inference = (func) ->
-    match = func.toString().match(/^function[^(]\(([^)]*)\)/)
-    ret = match[1].split(',').map (x) -> x.replace(' ', '')
-    ret.pop()
+    ret = null
+    if !Array.isArray(func)
+      match = func.toString().match(/^function[^(]\(([^)]*)\)/)
+      ret = match[1].split(',').map (x) -> x.replace(' ', '')
+      ret[ret.length - 1] = func
+    else
+      ret = func
     return ret
 
   execute = (func_name, cb) ->
@@ -28,8 +32,8 @@ freeflow = (methods, target_name, callback) ->
 
     waiting[func_name] = cb
 
-    func = methods[func_name]
-    dependencies = for name in inference(func)
+    [names..., func] = inference(methods[func_name])
+    dependencies = for name in names
       do (name) -> (cb) -> execute name, cb # capture name when creating callback.
 
     final_callback = ->

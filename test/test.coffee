@@ -1,3 +1,5 @@
+{freeflow} = require '../src/freeflow'
+
 test = ->
   # expected result: 357
   freeflow({
@@ -59,4 +61,4 @@ test = ->
     return
   )
 
-
+test()
