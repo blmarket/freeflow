@@ -39,7 +39,3 @@ If you don't like to use auto-inference feature, you can specify dependencies.
     }, 'funcC', function(err, result) {
       ...
     });
-
-### TODO
-
-* Alternative way without dependency inference.
